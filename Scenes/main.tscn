@@ -1,0 +1,163 @@
+[gd_scene load_steps=7 format=3 uid="uid://qwvnwwo1sr6w"]
+
+[ext_resource type="Script" uid="uid://by5lyc835f8r" path="res://Codes/main.gd" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://wwq3j2topyqt" path="res://Scenes/Player.tscn" id="1_jjgbg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjgbg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo1nx"]
+bg_color = Color(0.410873, 0.0825686, 0.119657, 1)
+border_color = Color(0.408669, 0.0861838, 0.123546, 1)
+corner_radius_bottom_right = 125
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gbba"]
+bg_color = Color(0.344279, 0.582611, 0.247861, 1)
+corner_radius_bottom_right = 125
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjvhh"]
+bg_color = Color(0.65068, 0.513493, 0, 1)
+corner_radius_bottom_right = 125
+
+[node name="Main" type="Node2D"]
+scale = Vector2(1, 1.0292)
+script = ExtResource("1_bo1nx")
+
+[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
+position = Vector2(288, 176)
+
+[node name="Ui" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="Container" type="Control" parent="Ui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="TouchScreenButton" parent="Ui/Container"]
+position = Vector2(1112, 32)
+scale = Vector2(2.36896, 2.36896)
+shape = SubResource("RectangleShape2D_jjgbg")
+action = "menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="Left" type="TouchScreenButton" parent="Ui/Container"]
+position = Vector2(80, 576)
+scale = Vector2(4.27323, 4.27323)
+shape = SubResource("RectangleShape2D_jjgbg")
+action = "left"
+metadata/_edit_use_anchors_ = true
+
+[node name="Right" type="TouchScreenButton" parent="Ui/Container"]
+position = Vector2(192, 576)
+scale = Vector2(4.27323, 4.27323)
+shape = SubResource("RectangleShape2D_jjgbg")
+action = "right"
+metadata/_edit_use_anchors_ = true
+
+[node name="Up" type="TouchScreenButton" parent="Ui/Container"]
+position = Vector2(1056, 472)
+scale = Vector2(4.27323, 4.27323)
+shape = SubResource("RectangleShape2D_jjgbg")
+action = "up"
+metadata/_edit_use_anchors_ = true
+
+[node name="Down" type="TouchScreenButton" parent="Ui/Container"]
+position = Vector2(1056, 576)
+scale = Vector2(4.27323, 4.27323)
+shape = SubResource("RectangleShape2D_jjgbg")
+action = "down"
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui"]
+anchors_preset = -1
+anchor_left = 0.00694444
+anchor_top = 0.0123457
+anchor_right = 0.221778
+anchor_bottom = 0.08157
+offset_right = 72.5112
+offset_bottom = 13.1427
+scale = Vector2(0.773403, 0.773403)
+metadata/_edit_use_anchors_ = true
+
+[node name="HPContainer" type="HBoxContainer" parent="Ui/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Ui/VBoxContainer/HPContainer"]
+layout_mode = 2
+text = "HP : "
+
+[node name="HealthBar" type="ProgressBar" parent="Ui/VBoxContainer/HPContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_bo1nx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8gbba")
+value = 100.0
+show_percentage = false
+
+[node name="MPContainer" type="HBoxContainer" parent="Ui/VBoxContainer"]
+custom_minimum_size = Vector2(290, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Ui/VBoxContainer/MPContainer"]
+layout_mode = 2
+text = "MP :"
+
+[node name="HealthBar" type="ProgressBar" parent="Ui/VBoxContainer/MPContainer"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_bo1nx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jjvhh")
+value = 100.0
+show_percentage = false
+
+[node name="Menu" type="CanvasLayer" parent="."]
+layer = 20
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27451, 0.27451, 0.27451, 0.658824)
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsMenu" type="TabContainer" parent="Menu"]
+anchors_preset = -1
+anchor_left = 0.166667
+anchor_top = 0.17284
+anchor_right = 0.833333
+anchor_bottom = 0.82716
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+all_tabs_in_front = true
+metadata/_edit_use_anchors_ = true
+
+[node name="General" type="VBoxContainer" parent="Menu/SettingsMenu"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="About Us" type="VBoxContainer" parent="Menu/SettingsMenu"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Menu" type="TouchScreenButton" parent="Menu"]
+position = Vector2(1112, 32)
+scale = Vector2(2.36896, 2.36896)
+shape = SubResource("RectangleShape2D_jjgbg")
+action = "menu"
+metadata/_edit_use_anchors_ = true
